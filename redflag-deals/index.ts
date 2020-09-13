@@ -31,7 +31,7 @@ const timerTrigger: AzureFunction = async function (context: Context, myTimer: a
         const postedDate = moment($(post).find('.first-post-time').text() + ' -0300', 'MMM Do, YYYY h:mm a Z', true)
         const currentDate = moment().subtract(1, 'hours')
 
-        if (postedDate.diff(currentDate, 'hours') < -1) {
+        if (postedDate.diff(currentDate, 'hours') !== 0) {
             return false
         }
 
