@@ -29,14 +29,13 @@ const timerTrigger: AzureFunction = async function (context: Context, myTimer: a
 
     posts.each(async(i, post) => {
         const postedDate = moment($(post).find('.first-post-time').text() + ' -0300', 'MMM Do, YYYY h:mm a Z', true)
-        const currentDate = moment().subtract(1, 'hours')
-
+        const currentDate = moment().subtract(2, 'hours')
+        
         if (postedDate.diff(currentDate, 'hours') !== 0) {
             return false
         }
-
-        const title: string = $(post).find('.topic_title_link').text().trim()
-
+        
+        const title: string = $(post).find('.topictitle').text().trim()
         const found = rows.some((row) => title.toLowerCase().includes(row.fields.keyword))
 
         if (!found) {
